@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/setting-button1.png</file>
+        <file>assets/delete-button1.png</file>
+        <file>assets/complete-button1.png</file>
+        <file>assets/complete_backing1.png</file>
+    </qresource>
+</RCC>
