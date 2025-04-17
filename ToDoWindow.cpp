@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // create a scroll area
     scrollArea = new QScrollArea(centralWidget);
-    scrollArea->setWidgetResizable(true);  // Ensure content resizes with the scroll area
+    scrollArea->setWidgetResizable(true);
 
     // create a widget to hold the contents of the scroll area
     QWidget *scrollAreaWidgetContents = new QWidget(scrollArea);
@@ -27,16 +27,12 @@ MainWindow::MainWindow(QWidget *parent)
     // create a layout for the scroll area contents
     layout = new QVBoxLayout(scrollAreaWidgetContents);
 
-    // genetate an initial to-to window
+    // generate an initial to-do section
     addTodoSection();
-
-    // set the layout for the scroll area widget contents
-    scrollAreaWidgetContents->setLayout(layout);
 
     // set the layout for the central widget
     QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
     mainLayout->addWidget(scrollArea);
-    centralWidget->setLayout(mainLayout);
 
     // button to add a todo
     QPushButton *addButton = new QPushButton("New To-do", this);
@@ -45,14 +41,13 @@ MainWindow::MainWindow(QWidget *parent)
     // add button wiring
     connect(addButton, &QPushButton::clicked, this,
         [=]() {
-            if (todoSectionCount >= AppSettings::todoSectionsMax){return;}
+            if (todoSectionCount >= AppSettings::todoSectionsMax) return;
             addTodoSection();
         });
 
-    // set window size
-    setFixedSize(AppSettings::windowWidth, AppSettings::windowHeight); //TODO: make dynamic sizing
+    // initial window size (resizable)
+    resize(AppSettings::windowWidth, AppSettings::windowHeight);
 }
-
 
 MainWindow::~MainWindow(){}
 void MainWindow::addTodoSection()
